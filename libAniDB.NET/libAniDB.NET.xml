@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>libAniDB.NET</name>
+    </assembly>
+    <members>
+        <member name="T:libAniDB.NET.IAniDB">
+            <summary>
+            Interface to AniDB class. Use AniDBFactory to get an instance.
+            </summary>
+        </member>
+        <member name="M:libAniDB.NET.IAniDB.Stop">
+            <summary>
+            Stops all background threads. May be removed in later versions
+            </summary>
+        </member>
+        <member name="M:libAniDB.NET.IAniDB.Auth(System.String,System.String,libAniDB.NET.AniDBTaggedResponseCallback,System.String,System.Boolean,System.Boolean,System.Int32,System.Boolean)">
+            <summary>
+            Auth with the AniDB server.
+            </summary>
+            <param name="user">User name</param>
+            <param name="pass">Password</param>
+            <param name="callback">Response callback</param>
+            <param name="tag">Response tag</param>
+            <param name="nat">Returns the detected</param>
+            <param name="comp">Enable compression</param>
+            <param name="mtu">Maximum Transmission Unit size of responses (in bytes). Valid values are in the range 400-1400</param>
+            <param name="imgServer">Gets an image server domain name</param>
+            <remarks>
+            Possible Replies:
+            <list type="bullet">
+             <item><description>200 {str session_key} LOGIN ACCEPTED</description></item>
+             <item><description>201 {str session_key} LOGIN ACCEPTED - NEW VERSION AVAILABLE</description></item>
+             <item><description>500 LOGIN FAILED</description></item>
+             <item><description>503 CLIENT VERSION OUTDATED</description></item>
+             <item><description>504 CLIENT BANNED - {str reason}</description></item>
+             <item><description>505 ILLEGAL INPUT OR ACCESS DENIED</description></item>
+             <item><description>601 ANIDB OUT OF SERVICE - TRY AGAIN LATER</description></item>
+            <listheader><description>when nat=1</description></listheader>
+             <item><description>200 {str session_key} {str ip}:{int2 port} LOGIN ACCEPTED</description></item>
+             <item><description>201 {str session_key} {str ip}:{int2 port} LOGIN ACCEPTED - NEW VERSION AVAILABLE</description></item>
+            <listheader><description>when imgserver=1</description></listheader>
+             <item><description>200 {str session_key} LOGIN ACCEPTED<br/>
+              {str image server name}</description></item>
+             <item><description>201 {str session_key} LOGIN ACCEPTED - NEW VERSION AVAILABLE<br/>
+              {str image server name}</description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:libAniDB.NET.IAniDB.Logout(libAniDB.NET.AniDBTaggedResponseCallback,System.String)">
+            <summary>
+            Logs out, must be logged in
+            </summary>
+            <param name="callback">Response callback</param>
+            <param name="tag">Response tag</param>
+        </member>
+        <member name="M:libAniDB.NET.IAniDB.Encrypt(System.String,libAniDB.NET.AniDBTaggedResponseCallback,System.String)">
+            <summary>
+            Not Yet Implemented
+            </summary>
+            <param name="user">Use this user's API key to encrypt the session</param>
+            <param name="callback">Response callback</param>
+            <param name="tag">Response tag</param>
+        </member>
+        <member name="M:libAniDB.NET.IAniDB.Ping(System.Boolean,libAniDB.NET.AniDBTaggedResponseCallback,System.String)">
+            <summary>
+            Ping Command. Can be used to detect whether the outgoing port number has been changed by a NAT router (set nat to true) or to keep a "connection" alive.
+            </summary>
+            <param name="nat">If true(default), returns the outgoing port number.</param>
+            <param name="callback">Response callback</param>
+            <param name="tag">Response tag</param>
+        </member>
+        <member name="M:libAniDB.NET.IAniDB.ChangeEncoding(System.String,libAniDB.NET.AniDBTaggedResponseCallback,System.String)">
+            <summary>
+            Changes the encoding method.
+            </summary>
+            <param name="name"></param>
+            <param name="callback"></param>
+            <param name="tag"></param>
+        </member>
+        <member name="E:libAniDB.NET.IAniDB.ResponseRecieved">
+            <summary>
+            Invoked after a packet is recieved and processed internally.
+            If you want to do something with the packet before the library handles it, create a tagged request
+            </summary>
+        </member>
+        <member name="P:libAniDB.NET.IAniDB.EncryptionEnabled">
+            <summary>
+            True if encryption is enabled
+            </summary>
+        </member>
+        <member name="P:libAniDB.NET.IAniDB.LoggedIn">
+            <summary>
+            True if logged in
+            </summary>
+        </member>
+        <member name="E:libAniDB.NET.AniDB.ResponseRecieved">
+            <summary>
+            Invoked after a packet is recieved and processed internally.
+            If you want to do something with the packet before the library handles it, create a tagged request
+            </summary>
+        </member>
+        <member name="M:libAniDB.NET.ConcurrentList`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:libAniDB.NET.ConcurrentList`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:libAniDB.NET.ReadOnlyDictionary`2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:libAniDB.NET.ReadOnlyDictionary`2.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:libAniDB.NET.ReadOnlyDictionary`2.Add(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>
+            Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.</exception>
+        </member>
+        <member name="M:libAniDB.NET.ReadOnlyDictionary`2.Clear">
+            <summary>
+            Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only. </exception>
+        </member>
+        <member name="M:libAniDB.NET.ReadOnlyDictionary`2.Contains(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>
+            Determines whether the <see cref="T:System.Collections.Generic.ICollection`1"/> contains a specific value.
+            </summary>
+            <returns>
+            true if <paramref name="item"/> is found in the <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false.
+            </returns>
+            <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+        </member>
+        <member name="M:libAniDB.NET.ReadOnlyDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1"/> to an <see cref="T:System.Array"/>, starting at a particular <see cref="T:System.Array"/> index.
+            </summary>
+            <param name="array">The one-dimensional <see cref="T:System.Array"/> that is the destination of the elements copied from <see cref="T:System.Collections.Generic.ICollection`1"/>. The <see cref="T:System.Array"/> must have zero-based indexing.</param><param name="arrayIndex">The zero-based index in <paramref name="array"/> at which copying begins.</param><exception cref="T:System.ArgumentNullException"><paramref name="array"/> is null.</exception><exception cref="T:System.ArgumentOutOfRangeException"><paramref name="arrayIndex"/> is less than 0.</exception><exception cref="T:System.ArgumentException"><paramref name="array"/> is multidimensional.-or-The number of elements in the source <see cref="T:System.Collections.Generic.ICollection`1"/> is greater than the available space from <paramref name="arrayIndex"/> to the end of the destination <paramref name="array"/>.-or-Type <paramref name="T"/> cannot be cast automatically to the type of the destination <paramref name="array"/>.</exception>
+        </member>
+        <member name="M:libAniDB.NET.ReadOnlyDictionary`2.Remove(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>
+            Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <returns>
+            true if <paramref name="item"/> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false. This method also returns false if <paramref name="item"/> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </returns>
+            <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.</exception>
+        </member>
+        <member name="M:libAniDB.NET.ReadOnlyDictionary`2.ContainsKey(`0)">
+            <summary>
+            Determines whether the <see cref="T:System.Collections.Generic.IDictionary`2"/> contains an element with the specified key.
+            </summary>
+            <returns>
+            true if the <see cref="T:System.Collections.Generic.IDictionary`2"/> contains an element with the key; otherwise, false.
+            </returns>
+            <param name="key">The key to locate in the <see cref="T:System.Collections.Generic.IDictionary`2"/>.</param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
+        </member>
+        <member name="M:libAniDB.NET.ReadOnlyDictionary`2.Add(`0,`1)">
+            <summary>
+            Adds an element with the provided key and value to the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+            <param name="key">The object to use as the key of the element to add.</param><param name="value">The object to use as the value of the element to add.</param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception><exception cref="T:System.ArgumentException">An element with the same key already exists in the <see cref="T:System.Collections.Generic.IDictionary`2"/>.</exception><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IDictionary`2"/> is read-only.</exception>
+        </member>
+        <member name="M:libAniDB.NET.ReadOnlyDictionary`2.Remove(`0)">
+            <summary>
+            Removes the element with the specified key from the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+            <returns>
+            true if the element is successfully removed; otherwise, false.  This method also returns false if <paramref name="key"/> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </returns>
+            <param name="key">The key of the element to remove.</param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IDictionary`2"/> is read-only.</exception>
+        </member>
+        <member name="M:libAniDB.NET.ReadOnlyDictionary`2.TryGetValue(`0,`1@)">
+            <summary>
+            Gets the value associated with the specified key.
+            </summary>
+            <returns>
+            true if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2"/> contains an element with the specified key; otherwise, false.
+            </returns>
+            <param name="key">The key whose value to get.</param><param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value"/> parameter. This parameter is passed uninitialized.</param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
+        </member>
+        <member name="P:libAniDB.NET.ReadOnlyDictionary`2.Count">
+            <summary>
+            Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <returns>
+            The number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </returns>
+        </member>
+        <member name="P:libAniDB.NET.ReadOnlyDictionary`2.IsReadOnly">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
+            </summary>
+            <returns>
+            true if the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:libAniDB.NET.ReadOnlyDictionary`2.Item(`0)">
+            <summary>
+            Gets or sets the element with the specified key.
+            </summary>
+            <returns>
+            The element with the specified key.
+            </returns>
+            <param name="key">The key of the element to get or set.</param><exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception><exception cref="T:System.Collections.Generic.KeyNotFoundException">The property is retrieved and <paramref name="key"/> is not found.</exception><exception cref="T:System.NotSupportedException">The property is set and the <see cref="T:System.Collections.Generic.IDictionary`2"/> is read-only.</exception>
+        </member>
+        <member name="P:libAniDB.NET.ReadOnlyDictionary`2.Keys">
+            <summary>
+            Gets an <see cref="T:System.Collections.Generic.ICollection`1"/> containing the keys of the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.Generic.ICollection`1"/> containing the keys of the object that implements <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </returns>
+        </member>
+        <member name="P:libAniDB.NET.ReadOnlyDictionary`2.Values">
+            <summary>
+            Gets an <see cref="T:System.Collections.Generic.ICollection`1"/> containing the values in the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.Generic.ICollection`1"/> containing the values in the object that implements <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </returns>
+        </member>
+    </members>
+</doc>
