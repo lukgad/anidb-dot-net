@@ -1,6 +1,8 @@
 # anidb-dot-net
 Automatically exported from code.google.com/p/anidb-dot-net
 
+Original repo by juilin.sandar
+
 ```
 A .NET library for AniDB's UDP API.
 
